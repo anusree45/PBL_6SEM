@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Covid-19 Website</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('.faq_question').click(function() {
+
+                if ($(this).parent().is('.open')) {
+                    $(this).closest('.faq').find('.faq_answer_container').slideUp();
+                    $(this).closest('.faq').removeClass('open');
+                } else {
+                    $('.faq_answer_container').slideUp();
+                    $('.faq').removeClass('open');
+                    $(this).closest('.faq').find('.faq_answer_container').slideDown();
+                    $(this).closest('.faq').addClass('open');
+                }
+
+            });
+        });
+    </script>
+    <style>
+        
+        
+        :root{
+            --red:#440A67;                      
+        }
+
+        *{
+            font-family: 'Lato', sans-serif;                        
+            margin:0; padding:0;
+            box-sizing: border-box;
+            outline: none; border:none;
+            text-decoration: none;
+            transition:all .3s cubic-bezier(.16,.8,.62,1.52);
+            text-transform: capitalize;
+        }
+
+        *::selection{
+            background:var(--red);
+            color:#BBBBBB;                                             
+        }
+
+        html{
+            overflow-x: hidden;
+        }
+
+        html::-webkit-scrollbar{
+          
+        }
+
+        html::-webkit-scrollbar-track{
+            background: #000;
+        }
+
+        html::-webkit-scrollbar-thumb{
+            background: var(--red);
+        }
+
+        body{
+            background:#E1CCEC;
+        }
+
+        section{
+            padding:40px;
+            padding-top: 10px;
+        }
+
+        .btn{
+            display: inline-block;
+            margin-top: 5px;
+            padding:10px;
+            border-radius: 5px;
+            background:var(--red);
+            color:#fff;
+            overflow: hidden;
+            position: relative;
+            z-index: 0;
+            font-size: 17px;
+        }
+
+        .btn::before{
+            content:'';
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background:#444;
+            clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+            transition:.3s linear;
+        }
+
+        .btn:hover::before{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .heading{
+            font-size: 30px;
+            color:#666;
+        }
+
+        .heading span{
+            color:var(--red);
+        }
+
+
+        header{
+            width:100%;
+            background: #B2B1B9; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top:0; left: 0;
+            z-index: 1000;
+            padding:20px;
+            box-shadow: 0 5 1 rgba(0,0,0,.1);
+        }
+
+        header .logo{
+            font-size: 25px;
+            color:#666;
+        }
+
+        header .logo span{
+            color:var(--red);
+        }
+
+        header .navbar ul{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+        }
+
+        header .navbar ul li{
+            margin-left: 25px;
+        }
+
+        header .navbar ul li a{
+            color:#595260;  
+            font-size: 20px;
+        }
+
+        header .navbar ul li a.active,
+        header .navbar ul li a:hover{
+            color:var(--red);
+            border-bottom: 2px solid var(--red);
+            padding:7px;
+        }
+
+        #menu{
+            font-size: 30px;
+            color:  #595260; 
+            cursor: pointer;
+            display: none;
+        }
+
+        .home{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 120px;
+            padding-top: 100px;
+        }
+
+        .home .image{
+            flex:1 1 40px;
+        }
+
+        .home .image img{
+            width:100%;
+        }
+
+        .home .content{
+            flex:1 1 80px;
+        }
+
+        .home .content span{
+            color:var(--red);
+            font-size: 25px;
+        }
+
+        .home .content h3{
+            color:#666;
+            font-size: 50px;
+        }
+
+        .home .content p{
+            color:#595260;
+            font-size: 20px;
+            padding:10px;
+        }
+
+        .protect .heading{
+            text-align: center;
+            padding:10px;
+        }
+
+        .protect .box-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .protect .box-container .box{
+            background:#fff;
+            border: 1px solid rgba(0,0,0,.1);
+            padding:20px;
+            margin:20px;
+            width:350px;
+            border-radius: 5px;
+            box-shadow: 0 5px 1px rgba(0,0,0,.1);
+            text-align: center;
+            justify-content: left;
+        }
+
+        .protect .box-container .box img{
+            height: 150px;
+            width: 150px;
+        }
+
+        .protect .box-container .box h3{
+            font-size: 25px;
+            color:#666;
+            padding:10px;
+        }
+
+        .protect .box-container .box p{
+            font-size: 14px;
+            color:  #595260;  
+            padding:15px;
+            
+        }
+
+
+        .symptoms{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .symptoms .content{
+            flex:1 1 40px;
+        }
+
+        .symptoms .image{
+            flex:1 1 40px;
+        }
+
+        .symptoms .image img{
+            width:100%;
+        }
+
+        .symptoms .content p{
+            font-size: 15px;
+            color: #595260;   
+            padding:10px;
+        }
+
+        .symptoms .content ul{
+            display: flex;
+            flex-wrap: wrap;
+            padding:10px;
+        }
+
+        .symptoms .content ul .two{
+            padding-left: 45px;
+        }
+
+        .symptoms .content ul li{
+            margin-left: 20px;
+            font-size: 15px;
+            color:#666;
+            padding: 10px;
+        }
+
+        .prevention{
+            background:#222;
+        }
+
+        .prevention .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding:20px;
+        }
+
+        .prevention .row .image{
+            flex:1 1 37px;
+            height:350px;
+            text-align: center;
+        }
+
+        .prevention .row .image img{
+            height:100%;
+            width:100%;
+            object-fit: cover;
+        }
+
+        .prevention .row .content{
+            padding:20px;
+            flex:1 1 37px;
+        }
+
+        .prevention .row .content .heading{
+            color:#fff;
+        }
+
+        .prevention .row .content p{
+            font-size: 20px;
+            color:#aaa;
+            padding:10px;
+        }
+
+        .prevention .row .content ul li{
+            margin-left: 5px;
+            font-size: 30px;
+            color:#aaa;
+            padding:10px;
+        }
+
+        .care .heading{
+            text-align: center;
+            padding:10px;
+        }
+
+        .care .box-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .care .box-container .box{
+            background:#fff;
+            border:1px solid rgba(0,0,0,.1);
+            margin:20px;
+            margin-top: 30px;
+            padding:20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .care .box-container .box img{
+            height:650px;
+            width:620px;
+        }
+
+        .care .box-container .box h3{
+            font-size: 20px;
+            color:#666;
+            padding:10px;
+        }
+
+        
+        .Vaccine .row{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding:20px;
+        }
+        .Vaccine .row .image{
+            flex:1 1 37;
+            height:350px;
+            text-align: center;
+        }
+
+        .Vaccine .row .image img{
+            height:100%;
+            width:125%;
+            object-fit:contain;
+        }
+
+        .Vaccine .row .content{
+            padding:20px;
+            flex:1 1 37px;
+        }
+
+        .Vaccine .row .content h1{
+            font-size: 20px;
+            color:#2B2B2B; 
+            padding:10px;
+        }
+        .Vaccine .heading{
+            text-align: center;
+            padding:10px;
+        }
+        .Vaccine .row .content ul li{
+            margin-left: 15px;
+            font-size: 20px;
+            color:#2B2B2B;  
+            padding:20px;
+        }
+
+        .Vaccine .box-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        
+        .Vaccine .box-container .box{
+            background:#fff;
+            border: 1px solid rgba(0,0,0,.1);
+            padding:20px;
+            margin:20px;
+            width:330px;
+            border-radius: 5px;
+            box-shadow: 0 5 10 rgba(0,0,0,.1);
+            text-align: center;
+        }
+
+        .Vaccine .box-container .box img{
+            height: 170px;
+            width:170px;
+        }
+
+        .Vaccine .box-container .box h3{
+            font-size: 20px;
+            color:#666;
+            padding:10px;
+        }
+
+        .faq .heading{
+            text-align: center;
+            padding:1rem;
+        }
+
+        .footer{
+            min-height: auto;
+            padding-top: 0;
+            background:#333;
+        }
+
+        .footer .box-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding:20px; 
+        }
+
+        .footer .box-container .box{
+            flex:1 1 25px;
+            margin:20px;
+            justify-content: center;
+        }
+
+        .footer .box-container .box img{
+            height:35%;
+            width:40%;
+            object-fit: cover;
+            float: right;
+        }
+
+
+        .footer .box-container .box h3{
+            font-size:20px;
+            color:#fff;
+            padding-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer .box-container .box p{
+            font-size:15px;
+            color:#ccc;
+            padding:10px;
+        }
+
+        .faq_question {
+            margin: 0px;
+            padding: 0px 0px 5px 0px;
+            display: inline-block;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .faq_answer_container {
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header>
+
+    <a href="#" class="logo">c<span class="fas fa-virus"></span>vid-19</a>
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a class="active" href="#home">home</a></li>
+            <li><a href="#symptoms">symptoms</a></li>
+            <li><a href="#protect">protection</a></li>
+            <li><a href="#prevention">prevention</a></li>
+            <li><a href="#care">Caring</a></li>
+            <li><a href="#Vaccination">Vaccination</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+
+        <span>Covid-19</span>
+        <h3>Stay Home, Stay Safe</h3>
+        <p>Covid-19 is caused by a virus known as SARS-Cov-2,which affects the respiratory system of humans.
+        The disease causes either no symptoms or is mild in 81% of cases. Of course, in the remaining 14%, it can cause severe pneumonia and in 5% it can become critical or even fatal. It is still unclear what the death rate may be. Be it could be lower than some estimates so far</p>
+        <a href="https://www.who.int/health-topics/coronavirus" class="btn">Know More</a>
+
+    </div>
+
+    <div class="image">
+        <img src="images/home-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- symtoms section starts  -->
+
+<section class="symptoms" id="symptoms">
+
+    <div class="content">
+        <h1 class="heading">What Are The Main <span>Symptoms?</span></h1>
+        <p>People with COVID-19 have had a wide range of symptoms reported – ranging from mild symptoms to severe illness. Symptoms may appear 2-14 days after exposure to the virus.
+        Anyone can have mild to severe symptoms. People with these symptoms may have COVID-19</p>
+        <ul>
+            <div class="one">
+                <li>Fever</li>
+                <li>Tiredness</li>
+                <li>Dry Cough</li>
+            </div>
+            <div class="two">
+                <li>Sore Throat</li>            
+                <li>Aches and Pains</li>
+                <li>Shortness of Breath</li>
+            </div>
+        </ul>
+        <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html" class="btn">know more</a>
+    </div>
+
+    <div class="image">
+        <img src="images/symptoms-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- symtoms section ends -->
+
+<section class="protect" id="protect">
+
+    <h1 class="heading">Take steps to <span>Protect</span> yourself</h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/protect-1.png" alt="">
+            <h3>Wear A Face Mask</h3>
+            <p>COVID-19 spreads mainly from person to person through respiratory droplets. Respiratory droplets travel into the air when you cough, sneeze, talk, shout, or sing.Masks are a simple barrier to help prevent your respiratory droplets from reaching others. Studies show that masks reduce the spray of droplets when worn over the nose and mouth.</p>
+            <a href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/cloth-face-cover-guidance.html" class="btn">learn more</a>
+        </div>
+
+        <div class="box">
+            <img src="images/protect-2.png" alt="">
+            <h3>Wash Your Hands</h3>
+            <p>Preventing sickness reduces the amount of antibiotics people use and the likelihood that antibiotic resistance will develop. Handwashing can prevent about 30% of diarrhea-related sicknesses and about 20% of respiratory infections Handwashing can also prevent people from getting sick with germs that are already resistant to antibiotics and that can be difficult to treat.</p>
+            <a href="https://www.cdc.gov/handwashing/why-handwashing.html" class="btn">learn more</a>
+        </div>
+
+        <div class="box">
+            <img src="images/protect-3.png" alt="">
+            <h3>Avoid Close Contact</h3>
+            <p>Some viruses – like the virus that causes COVID-19 – spread easily, according to the Centers for Disease Control and Prevention. Social distancing puts space between individuals. If someone is sick and there are no people around, a virus cannot spread.Social distancing means we are doing our best to stay away from people so as to limit the spread of coronavirus</p>
+            <a href="https://healthtalk.unchealthcare.org/what-is-social-distancing-and-why-is-it-important/" class="btn">learn more</a>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- prevent section starts  -->
+
+<section class="prevention" id="prevention">
+
+    <div class="row">
+
+        <div class="image">
+            <img src="images/dont-img.png" alt="">
+        </div>
+
+        <div class="content">
+            <h1 class="heading">things <span style="color: #B4AEE8;">not to do</span> during covid</h1>
+            <p>Public transport, metros, gyms and any other crowded place should be avoided. The more the number of people, the more likely of the spread of the virus. If you have symptoms, self-quarantine yourself other than to visit the doctor. Staying isolated and not coming in contact with a lot of people is the only way to contain the spread of the disease.</p>
+            <ul>
+                <li>Do Not Share Eating</li>
+                <li>Do Not Touch Your Face or Nose</li>
+                <li>Do Not Contact Sick People</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="content">
+            <h1 class="heading">things <span style="color: #B4AEE8;" >to do</span> during covid</h1>
+            <p>Maintain Hygiene,You may start eating unhealthy things when you are confined to your homes. This could be a result of boredom. Instead, cook delicious and healthy recipes with the help of the internet. You should conscientiously include vitamins, proteins, and healthy carbohydrates in your diet. Additionally, you can boost your immunity with the help of Ayurveda.</p>
+            <ul>
+                <li>Wash Your Hands For 20 sec</li>
+                <li>Wear a Mask if Available</li>
+                <li>Seek Medical Care Regularly</li>
+            </ul>
+        </div>
+
+        <div class="image">
+            <img src="images/do-img.png" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- prevent section ends -->
+
+<!-- handwash section starts  -->
+
+<section class="care" id="care">
+
+    <h1 class="heading">how to <span>Take care</span> of Covid positive patient?</h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/takingcare.jpeg" alt="">
+            <a href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/care-for-someone.html" class="btn">know more</a>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!-- handwash section ends -->
+
+<!-- Vaccine section starts  -->
+
+<section class="Vaccine" id="Vaccination">
+
+    
+    <h1 class="heading">how to become <span>A Covid Warrior??🤔</span></h1>
+
+    
+    <div class="row">
+        <div class="image" id="vaccine">
+            <img src="images/vaccine.png" alt="">
+         </div>
+
+
+        <div class="content">
+            <h1 class="heading">How to <span style="color: #999;" >Register </span>for covid vaccine</h1>
+             
+        <ul>
+            <div class="one">
+                <li>Self-register on the CoWIN Website OR Login through the <a href="https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu" target="blank">Aarogya Setu</a> App</li>
+                <li>Upload government photo identity or do an AADHAAR authentication.The authentication can happen via biometrics, OTP or demographic.</li>  
+                <li>Once registered, a date and time will be allocated for vaccination</li>
+                <li>There will be no on the spot registration and only pre-registered beneficiaries will be allowed to proceed for the vaccination.</li>
+                <li>Respective district administration will be responsible for the session management in the CoWIN system.They will approve the beneficiaries for session and siteallocation. CoWIN will have an inbuilt monitoring and reporting mechanism.</li>
+            </div>
+        </ul>
+        <a href="https://selfregistration.cowin.gov.in/" class="btn">CLICK TO REGISTER!!</a>
+        </div>
+
+
+
+        <div class="box-container">
+
+        <div class="box">
+            <img src="images/registration.png" alt="">
+            <h3>Register Through an app</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/calendar.png" alt="">
+            <h3>Schedule the dates accordingly</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/shot.png" alt="">
+            <h3>Get your shot in a hospital!</h3>
+        </div>
+
+        <div class="box">
+            <img src="images/coronavirus.png" alt="">
+            <h3>You are all set now!!</h3>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h1 class="heading">Search For Covid Care Center & Vaccination center nearby💉</h1>
+    <div id="nearby-covid-places-mapmyindia"></div>
+
+</section>
+
+<section class="faq" id="faq">
+    <h1 class="heading">Ask Your Questions here!</h1>
+    <iframe src="https://console.dialogflow.com/api-client/demo/embedded/7726bd47-f5c2-4753-b2c4-886612d13b40" 
+    allow="microphone;"
+    width= 100%;
+    height="500"
+    style="border:2px solid black;">
+</iframe>
+   
+</section>
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>contact info</h3>
+            <p> <i class="fas fa-envelope" style='color:black'></i> test@gmail.com </p>
+            <p> <i class="fas fa-map-marker-alt"style='color:black'></i> BENGALURU </p>
+            <h1><p>Created with Love❤💜</p></h1>
+        </div>
+
+        <div class="box">
+            <img src="images/Goodbye.png" alt="">
+        </div>
+    </div>  
+</section>
+
+<!-- footer section ends -->
+
+<!-- jquery cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="script.js"></script> 
+<script type="text/javascript">
+        loadNearbyCovidCentresMapmyIndiaDiv(document.getElementById("nearby-covid-places-mapmyindia"));
+</script>
+ 
+
+</body>
+</html>
